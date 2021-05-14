@@ -37,9 +37,9 @@ xnoremap J :move '>+1<CR>gv-gv
 
 " SNIPPETS
 " Read an empty if template for node.js and move cursor to condition
-nnoremap !nodeif :read $HOME/.vim/snippets/nodejs_if_snippet.js<CR>4l
+nnoremap !nodeif :read $HOME/.config/nvim/snippets/nodejs_if_snippet.js<CR>4l
 " Read an empty if else template for node.js and move cursor to condition
-nnoremap !nodeife :-1read $HOME/.vim/snippets/nodejs_if_else_snippet.js<CR>4l
+nnoremap !nodeife :-1read $HOME/.config/nvim/snippets/nodejs_if_else_snippet.js<CR>4l
 
 " set-up vim-plug plugin manager
 if empty(glob('~/.config/nvim/plugged'))
