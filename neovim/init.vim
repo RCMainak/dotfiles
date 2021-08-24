@@ -35,6 +35,10 @@ set tabstop=2 shiftwidth=2 expandtab
 xnoremap K :move '<-2<CR>gv-gv
 xnoremap J :move '>+1<CR>gv-gv
 
+nnoremap j jzzzv
+nnoremap k kzzzv
+" ---------------------- KEY MAPPING ----------------------
+
 " SNIPPETS
 " Read an empty if template for node.js and move cursor to condition
 nnoremap !nodeif :read $HOME/.config/nvim/snippets/nodejs_if_snippet.js<CR>4l
