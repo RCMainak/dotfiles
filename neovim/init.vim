@@ -46,14 +46,28 @@ nnoremap !nodeif :read $HOME/.config/nvim/snippets/nodejs_if_snippet.js<CR>4l
 nnoremap !nodeife :-1read $HOME/.config/nvim/snippets/nodejs_if_else_snippet.js<CR>4l
 
 " set-up vim-plug plugin manager
-if empty(glob('~/.config/nvim/plugged'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
+if has('win32')&&!has('win64')
+  let curl_exists=expand('C:\Windows\Sysnative\curl.exe')
+else
+  let curl_exists=expand('curl')
+endif
+
+if !filereadable(vimplug_exists)
+  if !executable(curl_exists)
+    echoerr "You have to install curl or first install vim-plug yourself!"
+    execute "q!"
+  endif
+  echo "Installing Vim-Plug..."
+  echo ""
+  silent exec "!"curl_exists" -fLo " . shellescape(vimplug_exists) . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  let g:not_finish_vimplug = "yes"
+
+  autocmd VimEnter * PlugInstall
 endif
 
 " start loading plugins
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin(expand('~/.config/nvim/plugged'))
 
 " themes
 Plug 'patstockwell/vim-monokai-tasty'
